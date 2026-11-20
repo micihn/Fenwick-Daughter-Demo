@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fenwick &amp; Daughter Roofing</title>
+<meta name="description" content="Roof repair and replacement in Columbus, Ohio. Written quote in 48 hours and a photo report of every job.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a trades owner talking straight, a little dry humour, no brochure words.
+   IDEA: the page behaves like a contractor's work order: plain, numbered by time, signed.
+   PICTURE: real roof work, photographed. A crew mid-job, not a stock smile.
+   COLOUR and TYPE: concrete white, asphalt slate, safety orange. Barlow Condensed like truck lettering, Barlow for reading.
+   LAYOUT: headline across the top, the job photo below it, the work order pinned over the photo. */
+:root{color-scheme:light;--bg:#f5f4f0;--ink:#15181b;--slate:#2f3a40;--line:#d9d6ce;--mute:#5a6066;--or:#ff5a1f;--or-ink:#c23c0c}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Barlow,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(42px,5.8vw,84px)}h2{font-size:clamp(32px,4vw,52px)}h3{font-size:24px}
+p{margin:0}a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,16px)}
+.concept{background:var(--ink);color:#c9ccce;font-size:13px;text-align:center;padding:6px 16px}
+nav{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-block:16px}
+.mark{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:26px;text-decoration:none;line-height:1}
+.mark b{color:var(--or)}
+nav .links{display:flex;gap:20px;flex-wrap:wrap;margin-left:auto;font-weight:500}
+nav .links a{text-decoration:none}nav .links a:hover{text-decoration:underline}
+.tel{font-weight:600;white-space:nowrap;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:0;border-radius:6px;background:var(--or);color:#fff;font:600 17px Barlow,sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--or-ink)}.btn:focus-visible,input:focus-visible,select:focus-visible,.chip input:focus-visible+span{outline:3px solid var(--ink);outline-offset:2px}
+.hero{padding-top:clamp(12px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) min(400px,38%);column-gap:clamp(24px,4vw,56px);align-items:start}
+.hero .head{grid-column:1;grid-row:1}
+.hero h1{max-width:14ch}
+.sub{font-size:clamp(18px,1.6vw,21px);max-width:46ch;margin-top:16px;color:var(--mute)}
+.stage{grid-column:1/3;grid-row:2;margin-top:clamp(20px,3vw,36px)}
+.street{height:clamp(320px,42vw,560px);overflow:hidden;border-radius:4px}
+.street{background:#c9c6bd}.street img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 72%}
+.caption{font-size:14px;color:var(--mute);margin-top:10px;max-width:60ch}
+.order{grid-column:2;grid-row:1/3;position:relative;z-index:2;margin-top:8px;background:#fff;border-radius:6px;padding:24px 24px 20px;box-shadow:0 18px 40px rgba(21,24,27,.22);border-top:6px dashed var(--line)}
+.order h2{font-size:30px}
+.order .note{font-size:14px;color:var(--mute);margin-top:4px}
+form{display:grid;gap:14px;margin-top:16px}
+label{font-weight:600;font-size:15px;display:grid;gap:6px}
+input,select{font:16px Barlow,sans-serif;min-height:46px;padding:0 12px;border:1.5px solid #b9b5ab;border-radius:5px;background:#fff;color:var(--ink);width:100%}
+fieldset{border:0;padding:0;margin:0}legend{font-weight:600;font-size:15px;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}.chip input{position:absolute;opacity:0;left:0;top:0;width:1px;height:1px;min-height:0}.chip span{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1.5px solid #b9b5ab;border-radius:999px;cursor:pointer;font-size:15px}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.err{color:var(--or-ink);font-size:14px;min-height:1em}
+.done{display:none;padding:8px 0}.done h3{margin-bottom:8px}
+.band{padding:clamp(48px,7vw,104px) 0}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.lead{font-size:19px;color:var(--mute);margin-top:16px;max-width:52ch}
+.phone{background:var(--ink);border-radius:30px;padding:14px;max-width:380px;margin-inline:auto;box-shadow:0 24px 48px rgba(21,24,27,.25)}
+.screen{background:#fff;border-radius:18px;padding:18px 16px}
+.screen header{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}
+.shot{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:start;padding:10px 0;border-bottom:1px solid #eeebe4}
+.shot:last-child{border:0}.shot img{width:96px;height:72px;border-radius:4px;display:block;object-fit:cover;background:#d9d6ce}
+.shot b{display:block;font-size:13px;color:var(--or-ink)}.shot p{font-size:14px;line-height:1.4}
+.prices{width:100%;border-collapse:collapse;margin-top:28px;font-size:18px}
+.prices th{text-align:left;font-weight:600;font-size:14px;color:var(--mute);padding:10px 12px 10px 0;border-bottom:2px solid var(--ink)}
+.prices td{padding:18px 12px 18px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.prices td:first-child{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:24px;line-height:1.1}
+.prices td.num{white-space:nowrap;font-weight:600}
+.small{font-size:14px;color:var(--mute);margin-top:12px}
+.dark{background:var(--slate);color:#eef0f0}.dark .lead,.dark .small{color:#b9c2c6}
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:36px;list-style:none;padding:0}
+.steps li{padding:18px 18px 0 0;border-top:3px solid #56656d;position:relative}
+
+.steps li::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;border-radius:50%;background:var(--slate);border:3px solid #56656d}
+
+.steps time{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:24px;display:block;color:#fff}
+.steps p{font-size:16px;margin-top:6px;color:#cfd6d9}
+.area{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.area li{border:1.5px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:500}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:24px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--or)}details[open] summary::after{content:"\2212"}
+details p{margin-top:10px;max-width:62ch;color:var(--mute)}
+.call{background:var(--or);color:#fff}
+.call .big{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:clamp(48px,9vw,128px);line-height:1;margin-top:12px;display:block;text-decoration:none;white-space:nowrap}
+.call .btn{background:var(--ink);margin-top:24px}.call .btn:hover{background:#000}
+footer{padding:28px 0 96px;font-size:14px;color:var(--mute)}
+.bar{display:none}
+@media(max-width:900px){
+ .hero{grid-template-columns:minmax(0,1fr)}.hero .head,.stage{grid-column:1;grid-row:auto}.order{grid-column:1;grid-row:auto;margin:-64px 12px 0}
+ .split{grid-template-columns:minmax(0,1fr)}
+ .steps{grid-template-columns:minmax(0,1fr);border-left:3px solid #56656d;margin-left:7px}
+ .steps li{border-top:0;padding:0 0 24px 22px}.steps li::before{left:-9px;top:4px}.steps li:first-child{border:0}
+}
+@media(max-width:600px){
+ nav .links{display:none}
+ .prices thead{display:none}.prices tr{display:grid;padding:14px 0;border-bottom:1px solid var(--line)}.prices td{border:0;padding:2px 0}
+ .bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;inset:auto 0 0 0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--ink);z-index:9}
+ .bar a{min-height:48px}.bar .ghost{background:transparent;border:1.5px solid #fff}
+}
+@media all{.order{animation:pin .6s ease-out both}@keyframes pin{from{transform:translateY(-14px) rotate(-1.5deg);opacity:0}to{transform:none;opacity:1}}}
+
+.insp{position:relative;margin:0;border-radius:6px;overflow:hidden;background:#3c4247;box-shadow:0 24px 48px rgba(21,24,27,.25)}
+.pw{position:relative}.insp img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:transparent;cursor:pointer;padding:0}
+.pin span{position:absolute;inset:8px;border-radius:50%;background:var(--or);color:#fff;font:800 15px "Barlow Condensed",sans-serif;display:grid;place-items:center;box-shadow:0 0 0 4px rgba(255,255,255,.85)}
+.pin::before{content:"";position:absolute;inset:8px;border-radius:50%;border:2px solid #fff;opacity:0}
+.insp figcaption{background:#fff;padding:16px 18px;display:grid;gap:8px}
+.insp figcaption p{font-size:15px;line-height:1.4;display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;transition:color .25s,background .25s;border-radius:4px;padding:4px}
+.insp figcaption b{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px}
+.insp figcaption p.on{background:#fff0e9}.insp figcaption p.on b{background:var(--or)}
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.thumbs figure{margin:0}.thumbs img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px;display:block;background:#d9d6ce}
+.thumbs figcaption{font-size:14px;color:var(--mute);margin-top:8px}
+.revhead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.score{font-size:18px;color:var(--mute)}.score b{font-family:"Barlow Condensed",sans-serif;font-size:56px;color:var(--ink);line-height:1;margin-right:6px}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px}
+.revs blockquote{margin:0;padding:22px;background:#fff;border-radius:6px;border-left:0;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.revs blockquote:nth-child(2){transform:translateY(18px)}
+.revs p{font-size:18px;line-height:1.45}.revs cite{font-style:normal;font-weight:600;font-size:15px}
+.revs blockquote::before{content:"\2605\2605\2605\2605\2605";color:var(--or);letter-spacing:2px;font-size:15px}
+.papers{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.papers li{padding:16px 16px 0 0;font-size:15px;color:var(--mute)}.papers b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:22px;color:var(--ink)}
+.reviews{padding-top:0}
+.steps li{transition:border-color .5s}.steps li::before{transition:background .4s,border-color .4s}
+.steps.go li{border-color:var(--or)}.steps.go li::before{background:var(--or);border-color:var(--or)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:900px){.revs{grid-template-columns:minmax(0,1fr)}.thumbs{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.thumbs figure{scroll-snap-align:start}.caption{display:none}.revs blockquote:nth-child(2){transform:none}.papers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media all{
+ .street img{animation:tarp 1.4s cubic-bezier(.7,0,.2,1) .15s both}
+ @keyframes tarp{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+ .street img{transform-origin:30% 50%}
+ .insp.in .pin span{animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
+ .insp.in .pin:nth-of-type(2) span{animation-delay:.25s}.insp.in .pin:nth-of-type(3) span{animation-delay:.5s}
+ .insp.in .pin::before{animation:ring 2.4s ease-out 1s infinite}
+ @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+ @keyframes ring{0%{opacity:.9;transform:scale(1)}80%,100%{opacity:0;transform:scale(2.2)}}
+ .steps.go li:nth-child(2),.steps.go li:nth-child(2)::before{transition-delay:.35s}.steps.go li:nth-child(3),.steps.go li:nth-child(3)::before{transition-delay:.7s}
+ .steps.go li:nth-child(4),.steps.go li:nth-child(4)::before{transition-delay:1.05s}.steps.go li:nth-child(5),.steps.go li:nth-child(5)::before{transition-delay:1.4s}
+}
+
+@media(prefers-reduced-motion:reduce){.insp.in .pin::before{animation:none}}
+</style>
+</head>
+<body>
+<div class="concept">Concept site for a fictional Columbus roofer, designed by PORTOKO. Names, prices and the phone number are sample content.</div>
+
+<header class="wrap">
+ <nav aria-label="Main">
+  <a class="mark" href="#top">Fenwick <b>&amp;</b> Daughter</a>
+  <div class="links"><a href="#report">Photo report</a><a href="#prices">Prices</a><a href="#how">How it works</a><a href="#faq">Questions</a></div>
+  <a class="tel" href="tel:+16145550142">(614) 555-0142</a>
+ </nav>
+</header>
+
+<main id="top">
+<section class="hero wrap">
+ <div class="head"><h1>A written quote in 48 hours, and photos of every repair.</h1>
+ <p class="sub">Roof repair and replacement in Columbus. The owner, Ruth Fenwick, inspects every roof herself before we quote.</p></div>
+ <div class="stage">
+  <div class="street"><img src="https://images.unsplash.com/photo-1643225523483-e2c434191bba?auto=format&fit=crop&w=2000&q=80" alt="A roofer carrying a bundle of shingles across a residential roof" loading="eager"></div>
+  <p class="caption">Tuesday, 9:40am. Old shingles off by 8, new roof on by 3.</p>
+ </div>
+ <div class="order" id="quote">
+   <div id="formwrap">
+    <h2>Tell us what's wrong</h2>
+    <p class="note">Takes a minute. Ruth calls you back, not a call center.</p>
+    <form id="qform" novalidate>
+     <fieldset><legend>What's going on?</legend>
+      <div class="chips">
+       <label class="chip"><input type="radio" name="issue" value="a leak" checked><span>A leak</span></label>
+       <label class="chip"><input type="radio" name="issue" value="storm damage"><span>Storm damage</span></label>
+       <label class="chip"><input type="radio" name="issue" value="a replacement"><span>Replace it</span></label>
+       <label class="chip"><input type="radio" name="issue" value="a look"><span>Not sure</span></label>
+      </div>
+     </fieldset>
+     <label>Street address<input id="addr" name="addr" autocomplete="street-address" placeholder="1420 Neil Ave"></label>
+     <label>Your name<input id="nm" name="nm" autocomplete="name"></label>
+     <label>Phone<input id="ph" name="ph" type="tel" autocomplete="tel" inputmode="tel"></label>
+     <label>Best time to call<select id="tm"><option>in the morning</option><option>in the afternoon</option><option>after 5pm</option></select></label>
+     <p class="err" id="err" role="alert"></p>
+     <button class="btn" type="submit">Get my written quote</button>
+     <p class="note">If it only needs a $200 fix, we'll tell you.</p>
+    </form>
+   </div>
+   <div class="done" id="done" aria-live="polite"><h3 id="doneh"></h3><p id="donep"></p></div>
+  </div>
+</section>
+
+<section class="band" id="report">
+ <div class="wrap split">
+  <div>
+   <h2>You see what we see, before you pay a dollar</h2>
+   <p class="lead">Ruth photographs every problem she finds and marks it up for you. After the job you get the same spots again, fixed. Most customers forward it straight to their insurance adjuster.</p><p class="lead" style="font-size:16px">Tap the dots on the photo.</p>
+  </div>
+  <figure class="insp" id="insp">
+    <div class="pw">
+    <img src="https://images.unsplash.com/photo-1782274951165-b88199bde548?auto=format&fit=crop&w=1600&q=80" alt="Close-up of an asphalt shingle roof with shingles missing" loading="lazy">
+    <button class="pin" style="left:63%;top:36%" aria-describedby="n1"><span>1</span></button>
+    <button class="pin" style="left:27%;top:64%" aria-describedby="n2"><span>2</span></button>
+    <button class="pin" style="left:82%;top:74%" aria-describedby="n3"><span>3</span></button>
+    </div>
+    <figcaption>
+     <p id="n1"><b>1</b>Three shingles gone, deck showing. Wind lifted them.</p>
+     <p id="n2"><b>2</b>Granules worn thin on this slope. Not urgent, worth watching.</p>
+     <p id="n3"><b>3</b>Nail pops. These leak once ice sits on them.</p>
+    </figcaption>
+   </figure>
+ </div>
+ <div class="wrap thumbs">
+  <figure><img src="https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?auto=format&fit=crop&w=600&q=80" alt="A roofer tearing off old shingles" loading="lazy"><figcaption>During: tear-off, decking checked sheet by sheet</figcaption></figure>
+  <figure><img src="https://images.unsplash.com/photo-1770044001869-12315d4d6884?auto=format&fit=crop&w=600&q=80" alt="A finished shingle roof with two dormer windows" loading="lazy"><figcaption>After: new flashing at both dormers</figcaption></figure>
+  <figure><img src="https://images.unsplash.com/photo-1635424824849-1b09bdcc55b1?auto=format&fit=crop&w=600&q=80" alt="A roofer fastening new shingles with a drill" loading="lazy"><figcaption>Every fastener photographed before it's covered</figcaption></figure>
+ </div>
+</section>
+
+<section class="band" id="prices" style="padding-top:0">
+ <div class="wrap">
+  <h2>What it usually costs</h2>
+  <p class="lead">Your quote is written and fixed before we start. No "we'll see when we get up there."</p>
+  <table class="prices">
+   <thead><tr><th>Job</th><th>Usually</th><th>Takes</th></tr></thead>
+   <tbody>
+    <tr><td>Leak repair</td><td class="num">$250 to $900</td><td>Same week</td></tr>
+    <tr><td>Storm damage and insurance claims</td><td>We meet your adjuster on the roof</td><td>1 to 2 visits</td></tr>
+    <tr><td>Full replacement, average Columbus house</td><td class="num">$11,000 to $19,000</td><td>1 to 2 days</td></tr>
+    <tr><td>Gutters and downspouts</td><td class="num">$900 to $2,400</td><td>1 day</td></tr>
+    <tr><td>Emergency tarp</td><td class="num">$350 to $600</td><td>Same day, before dark</td></tr>
+   </tbody>
+  </table>
+  <p class="small">Replacements can be paid monthly through a financing partner. Sample prices for a fictional company.</p>
+ </div>
+</section>
+
+
+
+<section class="band reviews" id="reviews">
+ <div class="wrap">
+  <div class="revhead"><h2>What customers wrote on Google</h2><p class="score"><b>4.9</b> from 212 reviews</p></div>
+  <div class="revs">
+   <blockquote><p>Ruth found the leak in twenty minutes. Two other companies wanted to replace the whole roof. Ours needed $480 of flashing.</p><cite>Dana M., Clintonville</cite></blockquote>
+   <blockquote><p>They sent photos of every step. Our adjuster approved the claim from the report without a second visit.</p><cite>Marcus T., Westerville</cite></blockquote>
+   <blockquote><p>Crew was gone by 3:30 and I couldn't find a single nail in the yard. My kids looked.</p><cite>Priya S., Upper Arlington</cite></blockquote>
+  </div>
+  <p class="small">Sample reviews for a fictional company. On a client's site, the newest Google reviews load here.</p>
+  <ul class="papers">
+   <li><b>Licensed</b>City of Columbus home improvement contractor, residential roofing</li>
+   <li><b>Insured</b>General liability and Ohio BWC workers' comp, certificates on request</li>
+   <li><b>Permitted</b>We pull the city permit for every replacement</li>
+   <li><b>Warranty</b>10 years on workmanship, in writing, plus the manufacturer's</li>
+  </ul>
+ </div>
+</section>
+
+<section class="band dark" id="how">
+ <div class="wrap">
+  <h2>How a job runs</h2>
+  <ol class="steps">
+   <li><time>Today</time><p>You call or send the form. A person picks up, 7am to 7pm.</p></li>
+   <li><time>Within 2 days</time><p>Ruth inspects the roof and the attic. About 40 minutes.</p></li>
+   <li><time>48 hours later</time><p>Written quote with a fixed price and our license number on it. Compare it with anyone's.</p></li>
+   <li><time>Work day</time><p>We pull the City of Columbus permit. Same crew of four from tear-off to cleanup, then a magnet sweep of your lawn for nails.</p></li>
+   <li><time>After</time><p>Photo report, plus a 10-year workmanship warranty in writing.</p></li>
+  </ol>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap split">
+  <div>
+   <h2>Where we work</h2><p class="lead">Anywhere about 30 minutes from downtown Columbus.</p>
+   <ul class="area"><li>Clintonville</li><li>German Village</li><li>Grandview Heights</li><li>Bexley</li><li>Worthington</li><li>Upper Arlington</li><li>Westerville</li><li>Hilliard</li><li>Dublin</li><li>Gahanna</li></ul>
+  </div>
+  <div id="faq">
+   <details open><summary>Is the inspection free?</summary><p>Yes. If we find nothing wrong, we tell you that too, and leave.</p></details>
+   <details><summary>Will you deal with my insurance?</summary><p>We meet the adjuster on the roof and send them the photo report. We can't promise what they'll pay, and we won't pretend to.</p></details>
+   <details><summary>What if it rains on work day?</summary><p>We only tear off what we can close up the same day. A tarp stays on site until the last shingle.</p></details>
+   <details><summary>Do you use subcontractors?</summary><p>No. The people who quote it are the people who build it.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="band call">
+ <div class="wrap">
+  <h2>Roof leaking right now?</h2>
+  <a class="big" href="tel:+16145550142">(614) 555-0142</a>
+  <p class="lead" style="color:#fff">Put a bucket under it and call. Saturdays too.</p>
+  <a class="btn" href="#quote">Or get a written quote</a>
+ </div>
+</section>
+</main>
+
+<footer class="wrap">Fenwick &amp; Daughter Roofing is a fictional company. Site concept and copy by PORTOKO, Bandung.<br>Photos on <a href="https://unsplash.com">Unsplash</a>: <a href="https://unsplash.com/@zohairmirza">Zohair Mirza</a>, <a href="https://unsplash.com/@razesolar">Raze Solar</a>, <a href="https://unsplash.com/photos/damaged-asphalt-shingle-roof-with-missing-shingles-jUiyOUQMHeE">blue soda</a>, <a href="https://unsplash.com/photos/two-dormer-windows-on-a-shingled-roof-AE9VxuuxfQ4">Patrick Wadden</a>.</footer>
+
+<div class="bar"><a class="btn ghost" href="tel:+16145550142">Call us</a><a class="btn" href="#quote">Get a quote</a></div>
+
+<script>
+{
+ const f=document.getElementById('qform'),err=document.getElementById('err');
+ f.addEventListener('submit',e=>{
+  e.preventDefault();
+  const nm=document.getElementById('nm').value.trim(),ph=document.getElementById('ph').value.trim(),addr=document.getElementById('addr').value.trim();
+  const digits=ph.replace(/\D/g,'');
+  if(!addr){err.textContent='We need the address to look at the roof.';return}
+  if(!nm){err.textContent='What should Ruth call you?';return}
+  if(digits.length<10){err.textContent='That phone number looks short. Ten digits, please.';return}
+  err.textContent='';
+  const issue=f.querySelector('input[name=issue]:checked').value,tm=document.getElementById('tm').value;
+  document.getElementById('doneh').textContent='Got it, '+nm.split(' ')[0]+'.';
+  document.getElementById('donep').textContent='Ruth will call '+ph+' tomorrow '+tm+' about '+issue+' at '+addr+'. If water is coming in right now, call (614) 555-0142.';
+  document.getElementById('formwrap').style.display='none';
+  document.getElementById('done').style.display='block';
+ });
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add(e.target.classList.contains('steps')?'go':'in');io.unobserve(e.target)}}),{threshold:.25});
+ document.querySelectorAll('.band h2,.lead,.revs blockquote,.papers li,.thumbs,.prices').forEach(el=>{el.classList.add('rv');io.observe(el)});
+ io.observe(document.querySelector('.steps'));io.observe(document.getElementById('insp'));
+ const pins=[...document.querySelectorAll('.pin')],notes=[...document.querySelectorAll('.insp figcaption p')];
+ const on=k=>notes.forEach((n,i)=>n.classList.toggle('on',i===k));
+ pins.forEach((p,k)=>{p.addEventListener('mouseenter',()=>on(k));p.addEventListener('focus',()=>on(k));p.addEventListener('click',()=>on(k))});
+ notes.forEach((n,k)=>n.addEventListener('mouseenter',()=>on(k)));
+}
+</script>
+</body>
+</html>
